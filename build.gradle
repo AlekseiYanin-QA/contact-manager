@@ -1,17 +1,36 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'com.example'
 version = '1.0-SNAPSHOT'
+sourceCompatibility = '21'
 
 repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:deprecation"
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'org.springframework', name: 'spring-context', version: '6.2.1'
+    implementation group: 'org.springframework', name: 'spring-jdbc', version: '6.2.1'
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.4'
+
+    testImplementation group: 'org.springframework', name: 'spring-test', version: '6.2.1'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.11.4'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.4'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.11.4'
+}
+
+application {
+    mainClass.set('com.example.contactmanager.ContactManagerApplication')
 }
 
 test {
