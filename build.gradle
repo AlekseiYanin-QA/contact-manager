@@ -41,7 +41,7 @@ dependencies {
 }
 
 application {
-    mainClass.set('com.example.contactmanager.ContactManagerApplication')
+    mainClass.set('com.example.ContactManagerApplication')
 }
 
 test {
